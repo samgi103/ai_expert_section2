@@ -14,8 +14,7 @@ def build_model(verbose: bool = True):
     # Define your model
     # - reference parameters:
     #       5 rnn layers, 768 hidden dim.
-    # 29 : tokenizer token count + blank token count
-    model = DeepSpeech2Wrapper(80, 5, 768, 29)
+
 
     if verbose:
         count = 0
@@ -38,17 +37,14 @@ def build_dataset(is_train: bool = False):
     #  - use agmentation when training
     #  - number of mask: pick in [1, 2, 3]
     #  - mask size: pick in [4, 6, 8]
-    mel_feature_maker = FilterBankFeaturizer(16000,
-                                             0.025, 0.01,
-                                             0.97,
-                                             80, is_train,
-                                             2, 2, 2, 2)                                                                                          
+    
+    
     # Tokenizer Configure:
     # - pad_token="<BLK>"
-    tokenizer = GraphemeTokenizer('<BLK>')
+    
     
     # Dataset: sample audios in 'samples' dir
-    dataset = AudioFolderDataset('samples', mel_feature_maker, tokenizer)
+    
     
     return dataset, tokenizer
 

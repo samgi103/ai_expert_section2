@@ -29,8 +29,6 @@ class DeepSpeech2Wrapper(nn.Module):
         
         # Complete this function
         # the function output is CTC loss
-        model_output, output_length = self.model(features, feature_lengths)
-        loss = self.loss(model_output, labels, output_length, label_lengths)
         
         return loss
 
@@ -44,7 +42,5 @@ class DeepSpeech2Wrapper(nn.Module):
         # the function outputs are
         #  - prediction: decoded model output
         #  - logp_score: log-probability of the prediction
-        model_output, output_length = self.model(features, feature_lengths)
-        prediction, logp_score = self.decoder(model_output, output_length, beam_width)
         
         return prediction, logp_score
